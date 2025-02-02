@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./styles/main.scss";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -60,22 +60,22 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <section>
-          <Toaster />
-          {isDraftMode && (
-            <>
-              <DraftModeToast />
-              <VisualEditing />
-            </>
-          )}
-          <SanityLive onError={handleError} />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </section>
-        <SpeedInsights />
+          <section>
+            <Toaster />
+            {isDraftMode && (
+              <>
+                <DraftModeToast />
+                <VisualEditing />
+              </>
+            )}
+            <SanityLive onError={handleError} />
+            <Header />
+              <main>{children}</main>
+            <Footer />
+          </section>
+          <SpeedInsights />
       </body>
     </html>
   );
